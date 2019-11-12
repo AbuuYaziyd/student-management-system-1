@@ -2,17 +2,20 @@
 namespace App\Controllers;
 
 use App\Core\App;
+use App\Core\csrf;
 
 class LoginController
 {
     public function home()
     {
-        $query = $this->is_email_present();
-        if($query){
-            return redirect('login');
-        }else{
-            $_SESSION['email'] = $_POST['email'];
-            $_SESSION['login'] = true;
+        if(csrf::checkToken($_POST[csrf_token], 'loginForm')) {
+            $query = $this->is_email_present();
+            if($query){
+                return redirect('login');
+            }else{
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['login'] = true;
+            }
         }
         return redirect('');
     }

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Core\App;
+use App\Core\csrf;
 
 class CourseController
 {
@@ -12,11 +13,17 @@ class CourseController
 
     public function add_course()
     {
-        App::get('database')->insert('courses',[
-            'name' => $_POST['name'],
-            'start_date' => $_POST['start_date'],
-            'end_date' => $_POST['end_date']
-        ]);
+        if(csrf::checkToken($_POST[csrf_token], 'courseForm')) {
+            App::get('database')->insert('courses',[
+                'name' => $_POST['name'],
+                'start_date' => $_POST['start_date'],
+                'end_date' => $_POST['end_date']
+            ]);
+        } 
+        else {
+            die('csrf is done high risk');
+        }
+        
 
         return redirect('course/running-course');
     }

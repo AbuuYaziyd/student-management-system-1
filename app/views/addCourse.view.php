@@ -6,6 +6,7 @@
         </div>
         <div class="card-body">
             <form action="/course/add-course" method="post">
+                <input type="hidden" name="csrf_token" value="<?= App\Core\csrf::generateToken('courseForm'); ?>"/>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" name="name" class="form-control" id="nameCourse" 

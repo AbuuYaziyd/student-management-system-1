@@ -6,6 +6,7 @@
         </div>
         <div class="card-body">
             <form method="POST" action="/login">
+                <input type="hidden" name="csrf_token" value="<?= App\Core\csrf::generateToken('loginForm'); ?>"/>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
