@@ -12,6 +12,8 @@ Before running this program in your local machine, make sure you have run
 
 This composer.json file specifies required packages. The above command installs the required packages and generate vendor file.
 
+In order to run the server, in terminal ```php -S localhost:8000```
+
 ## About ##
 A minor project on PHP using manual MVC
 
